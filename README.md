@@ -19,3 +19,4 @@ Este aplicativo é somente para uso pessoal, por sua conta e risco.
 - ver se soma de valores está funcionando
 - arrumar acentos ao parsear do nokogiri
 - criar opção para seperar os extratos por mês
+- criar versão online
