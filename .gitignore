@@ -1,0 +1,3 @@
+*.ofx*
+*.pdf*
+/ofx2xls
