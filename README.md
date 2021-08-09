@@ -14,9 +14,11 @@ Este aplicativo é somente para uso pessoal, por sua conta e risco.
 * fast_excel
 
 # todo-issues-problemas
-- criar métodos para adicionar aos arrays
-- criar formatador de data
-- ver se soma de valores está funcionando
-- arrumar acentos ao parsear do nokogiri
+- ~criar métodos para adicionar aos arrays~
+- ~ver se soma de valores está funcionando~
+- ~arrumar acentos ao parsear do nokogiri~
+- ~arrumar nome do arquivo mesmo do ofx~
+- arrumar formato da data sem gambiarra
 - criar opção para seperar os extratos por mês
 - criar versão online
+- criar resumo de transações

@@ -1,0 +1,31 @@
+GEM
+  specs:
+    fast_excel (0.4.0)
+      ffi (> 1.9, < 2)
+    ffi (1.15.1)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
+    nokogiri (1.11.4-x86_64-linux)
+      racc (~> 1.4)
+    racc (1.5.1)
+    rack (2.2.3)
+    rack-protection (2.1.0)
+      rack
+    ruby2_keywords (0.0.4)
+    sinatra (2.1.0)
+      mustermann (~> 1.0)
+      rack (~> 2.2)
+      rack-protection (= 2.1.0)
+      tilt (~> 2.0)
+    tilt (2.0.10)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  fast_excel
+  nokogiri
+  sinatra
+
+BUNDLED WITH
+   2.2.18

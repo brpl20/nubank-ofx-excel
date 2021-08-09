@@ -3,16 +3,21 @@ require 'fast_excel'
 require 'date'
 require 'time'
 
+# require 'ap' para imprimir melhor (awesome_print)
+
 tipo = []		 # TRNTYPE 	(credito/debito)	
 valor = []   # TRNAMT  	(valor/transacao)
 notas = []   # MEMO     (notas da transacao)
 dia = []	   # DTPOSTED	(data/dia)
 
 # Selecionar seu arquivo Nubank
-doc = File.open("NU_402496560_01JAN2021_28MAI2021.ofx")
+doc = File.open("jul.ofx")
+doc_name = File.basename(doc, ".ofx")
+
 
 doc.each do | x |
-	x = Nokogiri::XML(x)
+	x = Nokogiri::XML(x, nil, Encoding::UTF_8.to_s)
+
 	if x.xpath("//TRNTYPE").children.to_s.empty? 
 		else
 			tipo << x.xpath("//TRNTYPE").children.to_s
@@ -23,7 +28,9 @@ doc.each do | x |
 	end
 	if x.xpath("//DTPOSTED").children.to_s.empty? 
 		else
-			dia << x.xpath("//DTPOSTED").children.to_s
+			#dia << Time.at(x.xpath("//DTPOSTED").children.to_s.delete_suffix('000000[0:GMT]').to_i)
+			#dia << DateTime.strptime(x.xpath("//DTPOSTED").children.to_s.delete_suffix('000000[0:GMT]'))
+			dia << x.xpath("//DTPOSTED").children.to_s.delete_suffix('000000[0:GMT]').insert(4, '/').insert(7, '/')
 	end
 	if x.xpath("//MEMO").children.to_s.empty? 
 		else
@@ -32,18 +39,8 @@ doc.each do | x |
 end
 
 full = tipo+valor+notas+dia
-#print data
 
-# tipo.each do | y |
-# 	puts y.join("\n")
-# end
-
-
-
-#puts tipo
-
-
-workbook = FastExcel.open("test.xlsx", constant_memory: true)
+workbook = FastExcel.open("#{doc_name}.xlsx", constant_memory: true)
 bold = workbook.bold_format
 worksheet = workbook.add_worksheet('nubanko')
 worksheet.auto_width = true
@@ -54,23 +51,6 @@ tipo.each do | tipox |
 	worksheet.append_row([dia[count], tipox, valor[count], notas[count]])
 	count +=1
 end
-
-
-
-#data.each do | data |
-#  strdata = data.to_s
-# 		if strdata.nil? || strdata.empty?
-# 			tipo = worksheet.append_row([strdata])
-# 	end
-# end
-
-# ARRUMAR 
-# arrayzo(tipo, worksheet)
-# arrayzo(valor, worksheet)
-# arrayzo(notas, worksheet)
-# arrayzo(data, worksheet)
-# format = worksheet.add_format(font_color: :red)
-# ARRUMAR 
 
 workbook.close
 
