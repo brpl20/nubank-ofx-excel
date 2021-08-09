@@ -1,4 +1,5 @@
 *.ofx*
 *.pdf*
+*.xlsx*
 /ofx2xls
 *.env*
